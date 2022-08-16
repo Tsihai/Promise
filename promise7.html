@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let a1 = Promise.resolve('sihai');
+    let a2 = 88;
+    let a3 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'sihai1');
+    });
+
+    Promise.all([a1, a2, a3]).then(data => {
+        // 三个参数都是 resolve, 就会进入到 then 中
+        console.log("data: ",data);
+    }).catch(err => {
+        // 三个参数有一个是 reject, 就会进入到 catch 中
+        console.error("err: ",err);
+    })
+</script>
+</body>
+</html>

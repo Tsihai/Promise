@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**
+     * 登录 异步耗时操作
+     * @param resolve
+     * @param reject
+     */
+    function login(resolve, reject) {
+        setTimeout(() => {
+            // 生成一个随机数
+            let number = Math.random();
+            if (number > 0.5) {
+                // 登录成功, 利用 resolve 函数将登录成功的结果扔出
+                resolve('登录成功');
+            } else {
+                // 登陆失败, 利用 reject 函数将登录失败的结果扔出
+                reject('登录失败');
+            }
+        }, 1000);
+    }
+
+    new Promise(login).then(data => {
+        // 如果 login 将来执行成功 (即 resolve 方法抛出执行结果时)
+        console.log("login: ", data);
+    },err => {
+        console.error("err: ", err);
+    })
+</script>
+</body>
+</html>

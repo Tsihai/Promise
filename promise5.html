@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let a1 = promise.resolve("Hello promise");
+    a1.then(data => {
+        console.log("data: ", data);
+    }).catch(err => {
+        // 需要 then 抛出异常, 才会进入 catch
+        console.error("err: ", err);
+    })
+
+</script>
+</body>
+</html>

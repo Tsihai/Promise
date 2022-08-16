@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let a1 = new Promise((resolve, reject) => {
+        setTimeout(reject, 100, 'sihai1');
+    });
+    let a2 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 200, 'sihai2');
+    });
+
+    Promise.race([a1, a2]).then(data => {
+        console.log("data: ", data);
+    }).catch(err => {
+        console.error("err: ", err);
+    })
+</script>
+</body>
+</html>

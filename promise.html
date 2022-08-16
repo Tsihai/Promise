@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**
+     * 登录 异步耗时操作
+     * @param resolve
+     * @param reject
+     */
+    function login(resolve, reject) {
+        setTimeout(() => {
+            // 生成一个随机数
+            let number = Math.random();
+            if (number > 0.5) {
+                // 登录成功, 利用 resolve 函数将登录成功的结果扔出
+                resolve('登录成功');
+            } else {
+                // 登陆失败, 利用 reject 函数将登录失败的结果扔出
+                reject('登录失败');
+            }
+        }, 1000);
+    }
+    /**
+     * 获取用户信息 异步耗时操作
+     * @param resolve
+     * @param reject
+     */
+    function getInfo(resolve, reject) {
+        setTimeout(() => {
+            // 生成一个随机数
+            let number = Math.random();
+            if (number > 0.5) {
+                // 获取信息成功, 利用 resolve 函数将登录成功的结果扔出
+                resolve('获取信息成功');
+            } else {
+                // 获取信息失败, 利用 reject 函数将登录失败的结果扔出
+                reject('获取信息失败');
+            }
+        }, 1000);
+    }
+    /**
+     * 获取菜单 异步耗时操作
+     * @param resolve
+     * @param reject
+     */
+    function getMenus(resolve, reject){
+        setTimeout(() => {
+            // 生成一个随机数
+            let number = Math.random();
+            if (number > 0.5) {
+                // 获取菜单成功, 利用 resolve 函数将登录成功的结果扔出
+                resolve('获取菜单成功');
+            } else {
+                // 获取菜单失败, 利用 reject 函数将登录失败的结果扔出
+                reject('获取菜单失败');
+            }
+        }, 1000);
+    }
+
+    new Promise(login).then(data => {
+        // 如果 login 将来执行成功 (即 resolve 方法抛出执行结果时)
+        console.log("login: ", data);
+        return new Promise(getInfo);
+    }).then(data => {
+        // getInfo 将来执行成功, 进入此代码块中
+        console.log("getInfo: ", data);
+        return new Promise(getMenus);
+    }).then(data => {
+        console.log("getMenus: ", data);
+    }).catch(err => {
+        // 如果上面任意一个出现异常, 都会进入到最近的 catch 代码块中
+        console.error("err: ", err);
+    })
+</script>
+</body>
+</html>
